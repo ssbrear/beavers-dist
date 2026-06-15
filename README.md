@@ -7,10 +7,9 @@ Beavers is **proprietary, closed-source software** — free to download and run,
 This repository hosts release binaries only; there is no source code here. See [`LICENSE`](LICENSE)
 for the full terms.
 
-> **Heads up:** until the first release is published, the [Releases](../../releases) page will be
-> empty. Download links below resolve once a release goes live.
-
 ## Install
+
+Grab the latest build from the [Releases](../../releases) page.
 
 - **Arch Linux** — install `beavers-bin` from the AUR:
   ```bash
@@ -34,11 +33,15 @@ for the full terms.
 
 ## Verifying your download
 
-Each release includes a `SHA256SUMS` file. After downloading:
+Each release includes a `SHA256SUMS` file covering every asset. Download it into the same folder as
+your download, then:
 
 ```bash
-sha256sum -c SHA256SUMS      # run in the folder with the downloaded files
+sha256sum --ignore-missing -c SHA256SUMS   # verifies whichever release files you downloaded
 ```
+
+`--ignore-missing` checks only the files you actually have — `SHA256SUMS` lists all platforms, so
+without it `sha256sum` reports the assets you didn't download as failures.
 
 ## Privacy
 
