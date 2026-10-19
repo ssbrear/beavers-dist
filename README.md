@@ -11,19 +11,26 @@ for the full terms.
 
 Grab the latest build from the [Releases](../../releases) page.
 
-- **Arch Linux** — install `beavers-bin` from the AUR:
-  ```bash
-  yay -S beavers-bin      # or: paru -S beavers-bin
-  ```
-  Uses your system WebKit and updates with `pacman -Syu`.
-
-- **Other Linux** — download the `.AppImage` from [Releases](../../releases), then:
+- **Linux (AppImage — any distro, including Arch)** — download the `.AppImage` from
+  [Releases](../../releases), then:
   ```bash
   chmod +x beavers_*.AppImage
   ./beavers_*.AppImage
   ```
-  The AppImage updates itself in-app. (Needs a reasonably current glibc; on Arch prefer the AUR
-  package above.)
+  The AppImage updates itself in-app. (Needs a reasonably current glibc.)
+
+- **Arch Linux (native package)** — Beavers isn't on the AUR yet, so build the `beavers-bin`
+  package yourself from the [`PKGBUILD`](arch/PKGBUILD) in this repo. It installs the same prebuilt
+  release binary and uses your system WebKit:
+  ```bash
+  git clone https://github.com/ssbrear/beavers-dist.git
+  cd beavers-dist/arch
+  less PKGBUILD      # review it first, as with any PKGBUILD
+  makepkg -si
+  ```
+  **This install does not update itself.** Package builds leave the in-app updater out, and pacman
+  doesn't know where the package came from. To update, run `git pull && makepkg -si` in the same
+  folder. To hear about new versions, watch this repo for releases (**Watch → Custom → Releases**).
 
 - **Windows** — download `beavers_*-setup.exe` from [Releases](../../releases) and run it.
   Beavers is **not code-signed yet**, so Windows SmartScreen will say *“Windows protected your PC.”*

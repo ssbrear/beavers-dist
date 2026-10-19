@@ -1,0 +1,26 @@
+# Maintainer: Sebastian Brear <sebastian.brear@gmail.com>
+pkgname=beavers-bin
+_pkgname=beavers
+pkgver=1.2.0
+pkgrel=1
+pkgdesc="Local WoW combat-log analyzer and WarcraftLogs report viewer (proprietary, prebuilt)"
+arch=('x86_64')
+url="https://github.com/ssbrear/beavers-dist"
+license=('custom:proprietary')
+# Runtime deps derived from the shipped binary's DT_NEEDED (libwebkit2gtk-4.1, libgtk-3) plus the
+# tray library Tauri v2 dlopens at runtime (libayatana-appindicator3.so.1 — not visible in ldd).
+# webkit2gtk-4.1 transitively pulls libsoup3 + javascriptcoregtk-4.1, which the binary also links.
+depends=('webkit2gtk-4.1' 'gtk3' 'libayatana-appindicator')
+provides=("beavers=$pkgver")
+conflicts=('beavers')
+options=('!strip' '!debug')   # the release binary is already stripped; no debug symbols to extract
+source=("$pkgname-$pkgver.tar.gz::https://github.com/ssbrear/beavers-dist/releases/download/v$pkgver/$_pkgname-$pkgver-x86_64.tar.gz")
+sha256sums=('fda347e2220ef631c98c7d37a61c0af82234fcbf1fecb20afb94114d52617fc9')
+
+package() {
+  cd "$srcdir/$_pkgname-$pkgver-x86_64"
+  install -Dm755 beavers          "$pkgdir/usr/bin/beavers"
+  install -Dm644 beavers.desktop  "$pkgdir/usr/share/applications/beavers.desktop"
+  install -Dm644 beavers.png      "$pkgdir/usr/share/icons/hicolor/128x128/apps/beavers.png"
+  install -Dm644 LICENSE          "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
