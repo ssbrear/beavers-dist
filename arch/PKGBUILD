@@ -1,7 +1,7 @@
 # Maintainer: Sebastian Brear <sebastian.brear@gmail.com>
 pkgname=beavers-bin
 _pkgname=beavers
-pkgver=1.2.0
+pkgver=1.2.1
 pkgrel=1
 pkgdesc="Local WoW combat-log analyzer and WarcraftLogs report viewer (proprietary, prebuilt)"
 arch=('x86_64')
@@ -15,7 +15,7 @@ provides=("beavers=$pkgver")
 conflicts=('beavers')
 options=('!strip' '!debug')   # the release binary is already stripped; no debug symbols to extract
 source=("$pkgname-$pkgver.tar.gz::https://github.com/ssbrear/beavers-dist/releases/download/v$pkgver/$_pkgname-$pkgver-x86_64.tar.gz")
-sha256sums=('fda347e2220ef631c98c7d37a61c0af82234fcbf1fecb20afb94114d52617fc9')
+sha256sums=('3ffcf9d4a9aa4acb1d5daa62f11b49d71f5258a4132b55541658bda744dd35fa')
 
 package() {
   cd "$srcdir/$_pkgname-$pkgver-x86_64"
