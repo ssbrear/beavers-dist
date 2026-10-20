@@ -14,10 +14,14 @@ Grab the latest build from the [Releases](../../releases) page.
 - **Linux (AppImage — any distro, including Arch)** — download the `.AppImage` from
   [Releases](../../releases), then:
   ```bash
-  chmod +x beavers_*.AppImage
-  ./beavers_*.AppImage
+  mv beavers_*.AppImage Beavers.AppImage   # optional, see below
+  chmod +x Beavers.AppImage
+  ./Beavers.AppImage
   ```
-  The AppImage updates itself in-app. (Needs a reasonably current glibc.)
+  The AppImage updates itself in-app by replacing the file **in place**. Any shortcut or launcher
+  pointing at it keeps working, but a filename like `beavers_1.2.0_amd64.AppImage` would keep its
+  original version number after updating. That's why the rename above to a version-free name is
+  suggested. (Needs a reasonably current glibc.)
 
 - **Arch Linux (native package)** — Beavers isn't on the AUR yet, so build the `beavers-bin`
   package yourself from the [`PKGBUILD`](arch/PKGBUILD) in this repo. It installs the same prebuilt
